@@ -19,7 +19,6 @@ logging.basicConfig(format=LOG_FORMAT, level=logging.WARNING)
 
 APP_ID = '42511'
 
-
 logging.getLogger("mediafire.client").setLevel(logging.INFO)
 logging.getLogger(
     "requests.packages.urllib3.connectionpool").setLevel(logging.WARNING)
@@ -153,6 +152,7 @@ def main():  # pylint: disable=too-many-statements
                         default=os.environ.get('MEDIAFIRE_EMAIL', None))
     parser.add_argument('--password', dest='password', required=False,
                         default=os.environ.get('MEDIAFIRE_PASSWORD', None))
+    parser.add_argument('--appid', dest='appid', required=False, default=APP_ID)
 
     actions = parser.add_subparsers(title='Actions', dest='action')
     # http://bugs.python.org/issue9253#msg186387
@@ -248,8 +248,8 @@ def main():  # pylint: disable=too-many-statements
 
     client = MediaFireClient()
 
-    if args.email and args.password:
-        client.login(args.email, args.password, app_id=APP_ID)
+    if args.email and args.password and args.appid:
+        client.login(args.email, args.password, app_id=args.appid)
 
     router = {
         "file-upload": do_file_upload,
