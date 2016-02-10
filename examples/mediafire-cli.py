@@ -255,13 +255,8 @@ def main():  # pylint: disable=too-many-statements
 
     client = MediaFireClient()
 
-<<<<<<< HEAD
     if args.email and args.password and args.appid:
         client.login(args.email, args.password, app_id=args.appid)
-=======
-    if args.email and args.password and args.appid and args.apikey:
-        client.login(args.email, args.password, app_id=args.appid, api_key=args.apikey)
->>>>>>> 1faeb6737edaeb7c5050bb2b6b5b573d9f6e9cc3
 
     router = {
         "file-upload": do_file_upload,
